@@ -10,6 +10,11 @@ def SmallPosterPath(instance, filename):
     filename = filename.replace(' ','-')
     return 'Blogs/Images/{0}/{1}'.format(name,filename)
 
+def SliderPosterPath(instance, filename):
+    name = instance.title.replace(' ','-')
+    filename = filename.replace(' ','-')
+    return 'Blogs/Images/{0}/{1}'.format(name,filename)
+
 def BigPosterPath(instance, filename):
     name = instance.title.replace(' ','-')
     filename = filename.replace(' ','-')
@@ -23,6 +28,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=255)
     small_poster = models.ImageField(upload_to=SmallPosterPath)
     big_poster = models.ImageField(upload_to=BigPosterPath)
+    slider_poster = models.ImageField(upload_to=SliderPosterPath)
     brif = models.TextField()
     descriptions = RichTextField()
     article = RichTextField()
@@ -38,13 +44,13 @@ class Blog(models.Model):
 
 
 class ReleaseChoices(models.IntegerChoices):
-    null = 0 ,
+    Null = 0 ,
     InTheMoment = 1 ,
     Scheduled = 2 , 
 
 class BlogReports(models.Model):
     Blog = models.OneToOneField(Blog, on_delete=models.CASCADE)
-    release = models.IntegerField(default=ReleaseChoices.null , choices=ReleaseChoices.choices)
+    release = models.IntegerField(default=ReleaseChoices.Null , choices=ReleaseChoices.choices)
     like = models.IntegerField()
     dislike = models.IntegerField()
     view = models.IntegerField()

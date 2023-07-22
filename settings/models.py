@@ -7,9 +7,9 @@ from ckeditor.fields import RichTextField
 class Generally(models.Model):
     logo = models.ImageField(upload_to="Importants/")
     icon = models.ImageField(upload_to="Importants/") 
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField()
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
-
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "Generally"
@@ -18,9 +18,9 @@ class Generally(models.Model):
 class LandingPage(models.Model):
     meta_title = models.TextField()
     meta_descriptions = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now)
+    created_at = models.DateTimeField()
     updated_at = models.DateTimeField(default=datetime.now, blank=True)
-
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = "LandingPage"

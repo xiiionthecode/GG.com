@@ -15,7 +15,7 @@
     <meta name="keywords" content="game, gaming, template, HTML template, responsive, Bootstrap, premium">
     <meta name="author" content="_nK">
 
-    <link rel="icon" type="image/png" href="{% static 'POG/images/favicon.png' %}">
+    <link rel="icon" type="image/png" href="/media/{{icon}}">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,6 +74,7 @@
 -->
 <body>
     
+<input type="hidden" id="client_language" name="client_language" value="">
         
 
 
@@ -201,7 +202,7 @@
             <div class="nk-nav-table">
                 
                 <a href="index.html" class="nk-nav-logo">
-                    <img src="{% static 'POG/images/logo.png' %}" alt="GoodGames" width="199">
+                    <img src="/media/{{logo}}" alt="PowerOfGame" width="199">
                 </a>
                 
                 <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
@@ -540,7 +541,16 @@
     </div>
     <!-- END: Login Modal -->
     
+    <script>
+        // Browser client language
+        window.onload = function () {
+            var client_lang = navigator.language || navigator.userLanguage;
+            alert(client_lang)
+            var client_language_input = document.getElementById("client_language");
+            client_language_input.setAttribute('value', client_lang);
+        };
         
+    </script>
     
         
     <!-- START: Scripts -->
@@ -605,6 +615,7 @@
     <script src="{% static 'POG/js/goodgames.min.js'%}"></script>
     <script src="{% static 'POG/js/goodgames-init.js'%}"></script>
 
+    
 
     {% block script %}
 
